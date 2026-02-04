@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_nif_validator_wizard,nif.validator.wizard,model_nif_validator_wizard,base.group_user,1,1,1,1
+access_nif_validator_result,nif.validator.result,model_nif_validator_result,base.group_user,1,1,1,1

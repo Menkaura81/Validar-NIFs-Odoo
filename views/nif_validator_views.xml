@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista formulario del wizard -->
+    <record id="view_nif_validator_wizard_form" model="ir.ui.view">
+        <field name="name">nif.validator.wizard.form</field>
+        <field name="model">nif.validator.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Validador de NIF">
+                <group invisible="procesado">
+                    <group>
+                        <field name="archivo_csv" filename="nombre_archivo_csv"/>
+                        <field name="nombre_archivo_csv" invisible="1"/>
+                        <field name="nombre_columna"/>
+                        <field name="procesado" invisible="1"/>
+                    </group>
+                </group>
+                <group string="Descargar Resultado" invisible="not procesado">
+                    <group>
+                        <field name="archivo_resultado" filename="nombre_archivo_resultado" readonly="1"/>
+                        <field name="nombre_archivo_resultado" invisible="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="accion_validar" string="Validar NIFs"
+                            type="object" class="btn-primary"
+                            invisible="procesado"/>
+                    <button string="Cerrar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción para abrir el wizard -->
+    <record id="action_nif_validator_wizard" model="ir.actions.act_window">
+        <field name="name">Validador de NIF</field>
+        <field name="res_model">nif.validator.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menú principal -->
+    <menuitem id="menu_nif_validator_root"
+              name="Validador NIF"
+              sequence="100"/>
+
+    <!-- Submenú -->
+    <menuitem id="menu_nif_validator"
+              name="Validar NIF desde CSV"
+              parent="menu_nif_validator_root"
+              action="action_nif_validator_wizard"
+              sequence="10"/>
+
+</odoo>
